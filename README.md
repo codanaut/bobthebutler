@@ -10,6 +10,7 @@ https://github.com/Pycord-Development/pycord
 
     python3 -m pip install -U "py-cord[voice]"
 
+Also requires FFMPEG for the radio module. 
 
 ---
 
