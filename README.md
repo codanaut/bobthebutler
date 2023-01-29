@@ -14,7 +14,7 @@ The discord version of Bob The Butler. Works in servers and dm's.
 Once cloned you will need to create a token file called `token.secret` inside the discord folder and place your bots token in that file.
 
 ### Requirements:
-We are now using [PyCord](https://github.com/Pycord-Development/pycord) instead of Discord.py for slash command support
+We are now using [PyCord](https://github.com/Pycord-Development/pycord) instead of Discord.py for slash command support. If you don't want radio support you can install without the "[voice]"
 
     python3 -m pip install -U "py-cord[voice]"
 
@@ -25,7 +25,9 @@ Also requires `FFMPEG` for the radio module.
 
 # Telegram
 
-Telegram version will be uploaded later!
+The telegram version of Bob The Butler. 
+
+You will need to setup a new bot with BotFather in telegram to generate a token. Then create a token file called `token.secret` inside the telegram folder and place your bots token in that file.
 
 ## Install
 Install the python package
@@ -33,3 +35,8 @@ Install the python package
     pip install python-telegram-bot --upgrade
 
 
+## Usage
+    /commands
+Using the /commands command will return a list of all commands. 
+
+If you want commands to show up in a list inside telegram when typing "/" you will need to edit your bot through BotFather and register the commands you want to show up by default. (all commands are still usable even if not registed with botfather)
