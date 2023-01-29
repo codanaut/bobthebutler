@@ -2,3 +2,5 @@
 *.secret
 
 Discord/cogs/__pycache__/
+
+Telegram/cogs/__pycache__/
