@@ -26,6 +26,8 @@ class radio(commands.Cog, name="Radio Commands"):
                     pass_context=True)
     async def paddockradio(self,ctx):
         source = FFmpegPCMAudio("http://stream.paddockradio.net/radio/8000/radio.mp3", executable=ffmpegPath)
+        if ctx.voice_client is not None:
+            await ctx.voice_client.disconnect()
         connected = ctx.author.voice
         if connected:
             await connected.channel.connect()
@@ -42,6 +44,8 @@ class radio(commands.Cog, name="Radio Commands"):
                     pass_context=True)
     async def upfm(self,ctx):
         source = FFmpegPCMAudio("https://stream.upfm.live/radio/8000/radio.mp3", executable=ffmpegPath)
+        if ctx.voice_client is not None:
+            await ctx.voice_client.disconnect()
         connected = ctx.author.voice
         if connected:
             await connected.channel.connect()
