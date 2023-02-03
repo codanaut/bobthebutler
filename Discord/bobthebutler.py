@@ -30,7 +30,6 @@ def get_prefix(bot, message):
 initial_extensions = ['cogs.crypto',
                       'cogs.fun',
                       'cogs.news',
-                      'cogs.radio',
                       'cogs.tokeTime',
                       'cogs.tools',
                       'cogs.xkcd']
