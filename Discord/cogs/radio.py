@@ -20,7 +20,7 @@ class radio(commands.Cog, name="Radio Commands"):
     def __init__(self, bot):
         self.bot = bot
 
-    # Radio Commands
+    # Paddock Radio - https://www.paddockradio.net/
     @commands.slash_command(name='paddockradio',
                     description="Paddock Radio",
                     pass_context=True)
@@ -38,7 +38,7 @@ class radio(commands.Cog, name="Radio Commands"):
         print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
 
 
-    # Radio Commands
+    # UPFM - https://upfm.co.nz/
     @commands.slash_command(name='upfm',
                     description="UPFM Radio",
                     pass_context=True)
@@ -54,6 +54,43 @@ class radio(commands.Cog, name="Radio Commands"):
         else:
             await ctx.respond('Plase Connect to voice channel')
         print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")        
+
+
+    # OJRock - https://radio.mpaq.org/
+    @commands.slash_command(name='rock',
+                    description="OJRock Radio",
+                    pass_context=True)
+    async def rock(self,ctx):
+        source = FFmpegPCMAudio("http://mpaq.org:5804/rock.mp3", executable=ffmpegPath)
+        if ctx.voice_client is not None:
+            await ctx.voice_client.disconnect()
+        connected = ctx.author.voice
+        if connected:
+            await connected.channel.connect()
+            ctx.voice_client.play(source, after=None)
+            await ctx.respond(f"Connecting to {connected.channel}")
+        else:
+            await ctx.respond('Plase Connect to voice channel')
+        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
+
+
+    
+    # Reggae Radio - https://www.partyvibe.com/reggae-radio-station/
+    @commands.slash_command(name='reggae',
+                    description="Reggae Radio",
+                    pass_context=True)
+    async def reggae(self,ctx):
+        source = FFmpegPCMAudio("https://partyviberadio.com:8060", executable=ffmpegPath)
+        if ctx.voice_client is not None:
+            await ctx.voice_client.disconnect()
+        connected = ctx.author.voice
+        if connected:
+            await connected.channel.connect()
+            ctx.voice_client.play(source, after=None)
+            await ctx.respond(f"Connecting to {connected.channel}")
+        else:
+            await ctx.respond('Plase Connect to voice channel')
+        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
 
 
     # Leave VC Channel
