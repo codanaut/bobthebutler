@@ -33,6 +33,7 @@ class radio(commands.Cog, name="Radio Commands"):
             await connected.channel.connect()
             ctx.voice_client.play(source, after=None)
             await ctx.respond(f"Connecting to {connected.channel}")
+            await ctx.edit(content='Now Playing: Paddock Radio - https://www.paddockradio.net/')
         else:
             await ctx.respond('Plase Connect to voice channel')
         print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
@@ -51,6 +52,7 @@ class radio(commands.Cog, name="Radio Commands"):
             await connected.channel.connect()
             ctx.voice_client.play(source, after=None)
             await ctx.respond(f"Connecting to {connected.channel}")
+            await ctx.edit(content='Now Playing: UPFM Radio - https://upfm.co.nz/')
         else:
             await ctx.respond('Plase Connect to voice channel')
         print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")        
@@ -69,6 +71,7 @@ class radio(commands.Cog, name="Radio Commands"):
             await connected.channel.connect()
             ctx.voice_client.play(source, after=None)
             await ctx.respond(f"Connecting to {connected.channel}")
+            await ctx.edit(content='Now Playing: OJRock Radio - https://radio.mpaq.org/')
         else:
             await ctx.respond('Plase Connect to voice channel')
         print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
@@ -88,6 +91,7 @@ class radio(commands.Cog, name="Radio Commands"):
             await connected.channel.connect()
             ctx.voice_client.play(source, after=None)
             await ctx.respond(f"Connecting to {connected.channel}")
+            await ctx.edit(content='Now Playing: Reggae Radio - https://www.partyvibe.com/reggae-radio-station/')
         else:
             await ctx.respond('Plase Connect to voice channel')
         print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
