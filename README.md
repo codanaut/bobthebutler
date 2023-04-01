@@ -40,3 +40,14 @@ Install the python package
 Using the /commands command will return a list of all commands. 
 
 If you want commands to show up in a list inside telegram when typing "/" you will need to edit your bot through BotFather and register the commands you want to show up by default. (all commands are still usable even if not registed with botfather)
+
+
+## ChatGPT Module (Requires OpenAI Subscription)
+
+If you want to use the chatgpt module, you will need to install the OpenAI API.
+
+    pip install openai
+
+This requires an OpenAI subscription as it uses the chatgpt 3.5-turbo API.
+
+Create a token file called `openAI.secret` inside the discord/telegram folder and place your OpenAI token in that file.
