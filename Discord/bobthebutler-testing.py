@@ -33,7 +33,8 @@ initial_extensions = ['cogs.crypto',
                       'cogs.tokeTime',
                       'cogs.tools',
                       'cogs.xkcd',
-                      'cogs.testing']
+                      'cogs.testing',
+                      'cogs.chatgpt']
 
 bot = commands.Bot(command_prefix=get_prefix, description='Cheat Codes: Use at your own risk, there is no quick save irl.', intents=intents)
 
