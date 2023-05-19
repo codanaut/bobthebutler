@@ -32,6 +32,8 @@ class chatgpt(commands.Cog):
 
     @commands.Cog.listener('on_message')
     async def my_on_message(self, message):
+        if message.author.bot:  # Check if the author is a bot
+            return
         
         content = message.content.replace(f'<@{self.bot.user.id}>', '').strip()
 
