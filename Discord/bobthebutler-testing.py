@@ -11,7 +11,7 @@ client_token = secret_file.readline().rstrip()
 # Enable Logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s %(levelname)s %(message)s',
+    format='%(levelname)s %(message)s',
     filename='bot.log',
     filemode='a'
 )
