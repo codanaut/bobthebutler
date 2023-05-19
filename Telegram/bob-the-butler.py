@@ -2,6 +2,8 @@ import time
 import inspect
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
+import logging
+
 
 # Import Cogs
 from cogs.crypto import *
@@ -16,17 +18,29 @@ from cogs.news import *
 secret_file = open('token.secret','r')
 token = secret_file.readline().rstrip()
 
+# Enable Logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s %(message)s',
+    filename='bot.log',
+    filemode='a'
+)
+
 
 # Start Command
 async def start(update, context):
     """Send a message when the command /start is issued."""
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
     await update.message.reply_text('Welcome!\n/help - to get started')
 
 
 async def help(update, context):
     """Send a message when the command /help is issued."""
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
     await update.message.reply_text(
         'Commands\n'
         '\n'
@@ -64,7 +78,9 @@ async def help(update, context):
 
 async def echo(update: Update, context):
     """Echo the user message."""
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
     await update.message.reply_text(update.message.text)
 
 

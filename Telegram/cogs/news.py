@@ -3,7 +3,7 @@ import json
 import time
 import inspect
 import random
-
+import logging
 
 
 async def topnews(update, context):
@@ -19,7 +19,9 @@ async def topnews(update, context):
     articleUrl = data['data']['children'][0]['data']['url']
     
     await update.message.reply_text(f"{title}\n{articleUrl}")
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def topworldnews(update, context):
@@ -35,7 +37,9 @@ async def topworldnews(update, context):
     articleUrl = data['data']['children'][1]['data']['url']
     
     await update.message.reply_text(f"{title}\n{articleUrl}")
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def news(update, context):
@@ -54,4 +58,6 @@ async def news(update, context):
     articleUrl = data['data']['children'][ranArticle]['data']['url']
     
     await update.message.reply_text(f"{title}\n{articleUrl}")
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)

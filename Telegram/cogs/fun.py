@@ -2,6 +2,7 @@ import random
 import time
 import inspect
 import requests
+import logging
 
 #
 # Fun Commands
@@ -16,7 +17,9 @@ async def joke(update, context):
     joke = data['joke']
 
     await update.message.reply_text(joke)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def bored(update, context):
@@ -28,7 +31,9 @@ async def bored(update, context):
     activity = data['activity']
     
     await update.message.reply_text(activity)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def excuse(update, context):
@@ -40,7 +45,9 @@ async def excuse(update, context):
     activity = data[0]['excuse']
     
     await update.message.reply_text(activity)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def uselessfact(update, context):
@@ -52,7 +59,9 @@ async def uselessfact(update, context):
     activity = data['text']
     
     await update.message.reply_text(activity)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 #
 # Animals
@@ -68,7 +77,9 @@ async def catfacts(update, context):
     fact = data['fact']
     
     await update.message.reply_text(fact)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def randomcat(update, context):
@@ -80,7 +91,9 @@ async def randomcat(update, context):
     catpic = data['file']
     
     await update.message.reply_text(catpic)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 # Dogs
 async def dogfacts(update, context):
@@ -94,7 +107,9 @@ async def dogfacts(update, context):
     fact = data[ranFact]['fact']
     
     await update.message.reply_text(fact)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 
 async def randomdog(update, context):
@@ -106,7 +121,9 @@ async def randomdog(update, context):
     pic = data['url']
     
     await update.message.reply_text(pic)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
 
 # foxes
 async def randomfox(update, context):
@@ -118,4 +135,6 @@ async def randomfox(update, context):
     foxpic = data['image']
     
     await update.message.reply_text(foxpic)
-    print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{inspect.stack()[0][3]} - {update.message.chat.username}")
+    message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{update.message.chat.username} - ID:{update.message.chat.id} - Bot:{update.message.from_user.is_bot} - Command:/{inspect.stack()[0][3]}"
+    logging.info(message_str)
+    print(message_str)
