@@ -2,10 +2,20 @@ import discord
 from discord.ext import commands
 import sys, traceback
 import asyncio
+import logging
 
 # set token
 secret_file = open('token.secret','r')
 client_token = secret_file.readline().rstrip()
+
+
+# Enable Logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+    filename='bot.log',
+    filemode='a'
+)
 
 intents = discord.Intents.all()
 
