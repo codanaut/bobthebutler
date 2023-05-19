@@ -4,6 +4,7 @@ import random
 import aiohttp
 import json
 import time
+import logging
 #
 # XKCD Cog
 #
@@ -27,8 +28,12 @@ class xkcd(commands.Cog, name="XKCD Commands"):
                 img = response['img']
                 embed = discord.Embed(description=title, colour=discord.Colour.blue())
                 embed.set_image(url=img)
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+
+                # Log
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
     # Random xkcd
     @commands.slash_command(name='randomxkcd', description="Random XKCD", brief="Get Random XKCD")
@@ -50,8 +55,11 @@ class xkcd(commands.Cog, name="XKCD Commands"):
                 img = response2['img']
                 embed = discord.Embed(description=title, colour=discord.Colour.blue())
                 embed.set_image(url=img)
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                # Log
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
 # When we load the cog, we use the name of the file.

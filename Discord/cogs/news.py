@@ -4,7 +4,7 @@ import random
 import aiohttp
 import json
 import time
-
+import logging
 #
 # News Cog 
 #
@@ -30,9 +30,12 @@ class news(commands.Cog, name="News"):
             data = json.loads(response)
             title = data['data']['children'][1]['data']['title']
             articleUrl = data['data']['children'][1]['data']['url']
-
-            print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
             await ctx.respond(articleUrl)
+
+            # Log
+            message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+            logging.info(message_str)
+            print(message_str)
 
 
     # Top World News
@@ -48,10 +51,12 @@ class news(commands.Cog, name="News"):
             data = json.loads(response)
             title = data['data']['children'][1]['data']['title']
             articleUrl = data['data']['children'][1]['data']['url']
-
-            print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
             await ctx.respond(articleUrl)
 
+            # Log
+            message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+            logging.info(message_str)
+            print(message_str)
 
     # Random news and world news
     @commands.slash_command(name='news', description="Random news articles")
@@ -69,9 +74,12 @@ class news(commands.Cog, name="News"):
             ranArticle = random.randint(1,26)
             title = data['data']['children'][ranArticle]['data']['title']
             articleUrl = data['data']['children'][ranArticle]['data']['url']
-
-            print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
             await ctx.respond(articleUrl)
+
+            # Log
+            message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+            logging.info(message_str)
+            print(message_str)
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
 # When we load the cog, we use the name of the file.

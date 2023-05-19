@@ -6,7 +6,7 @@ from discord.ext import commands
 import random
 from discord.commands import SlashCommandGroup
 import time
-
+import logging
 
 #
 # Testing Cog
@@ -33,7 +33,9 @@ class testing(commands.Cog, name="Commands being tested"):
             'This is testing shit',
             'Oh yeah test that shit'
         ]
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
         await ctx.send(random.choice(possible_responses))
 
 
@@ -41,6 +43,9 @@ class testing(commands.Cog, name="Commands being tested"):
     testgroup = SlashCommandGroup("testgroup","a test group")
     @testgroup.command(name = "hello", description = "Say hello to the bot")
     async def hello(self,ctx):
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
         await ctx.respond("Hey!")
     
 
@@ -51,7 +56,9 @@ class testing(commands.Cog, name="Commands being tested"):
         test = self.bot.get_application_command("btc", type=discord.commands.core.SlashCommand)
         print(test)
         
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
         await ctx.respond(f"ID: {test.id} ")
 
     # Get slash command ID
@@ -62,7 +69,9 @@ class testing(commands.Cog, name="Commands being tested"):
         test = commands.Cog.get_commands(self)
         print(test)
 
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
         await ctx.respond(f"ID: {test} ")
 
     

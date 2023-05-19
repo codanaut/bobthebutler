@@ -25,8 +25,11 @@ class info(commands.Cog):
         embed.add_field(name="**Crypto**", value="----------\n`/eth` - Get eth price\n`/btc` - get btc price\n`/nano` - Get the nano price\n", inline=False)
         embed.add_field(name="**Fun**", value="----------\n`/8ball` - 8ball answers all!\n`/repeat` - repeat your input\n`/bored` - Suggest something to do\n`/joke` - A random joke\n`toke` - Its time to toke\n`gif`- Random toking gif", inline=False)
         embed.add_field(name="**xkcd**", value="----------\n`/xkcd` - Get the newest xkcd\n`/randomxkcd` - Get a random xkcd", inline=False)
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
         await ctx.respond(embed=embed)
+
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
 
     
 

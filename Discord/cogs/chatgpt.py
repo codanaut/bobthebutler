@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import time
 import openai
-
+import logging
 #
 # Config OpenAI with API Key
 # 
@@ -39,10 +39,13 @@ class chatgpt(commands.Cog):
         if self.bot.user in message.mentions and message.guild: # Check if the bot is mentioned
             if message.author.id != self.bot.user.id:
                 await message.channel.trigger_typing()
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - @{self.bot.user} - Server:{message.guild} - User:{message.author}")
+                #print(f"{time.strftime('%m/%d/%y %I:%M%p')} - @{self.bot.user} - Server:{message.guild} - User:{message.author}")
                 chatReply = chatgpts(content)
                 await message.reply(f'{chatReply}')
                 await self.bot.process_commands(message)
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{message.author} - Server: {message.guild} - Message: {message.content} "
+                logging.info(message_str)
+                print(message_str)
             else:
                 #print("can't reply to self")
                 pass
@@ -51,10 +54,12 @@ class chatgpt(commands.Cog):
         if not message.guild:
             if message.author.id != self.bot.user.id:
                 await message.channel.trigger_typing()
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - @{self.bot.user} - Server:{message.guild} - User:{message.author}")
                 chatReply = chatgpts(content)
                 await message.channel.send(f'{chatReply}')
                 await self.bot.process_commands(message)
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{message.author} - Server: DM - Message: {message.content} "
+                logging.info(message_str)
+                print(message_str)
             else:
                 #print("can't reply to self")
                 pass
@@ -72,10 +77,11 @@ class chatgpt(commands.Cog):
     @commands.slash_command(name="chat",description="ChatGPT")
     async def chat(self, ctx, question: discord.Option(str), systemprompt:discord.Option(str, description="Custom Server Prompt", required=False, default=None)):
         await ctx.trigger_typing()
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
         chatReply = chatgpts(question, systemprompt)
         await ctx.respond(chatReply)
-
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
     
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.

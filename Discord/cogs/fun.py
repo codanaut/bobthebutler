@@ -5,6 +5,7 @@ import random
 import aiohttp
 import json
 import time
+import logging
 
 #
 # Fun Cog
@@ -55,8 +56,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
         embed=discord.Embed(color=0x050505)
         embed.set_author(name="Magic 8Ball", icon_url="https://i.imgur.com/c59iVYd.jpeg")
         embed.add_field(name="Universe Says:", value=random.choice(possible_responses), inline=True)
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
         await ctx.respond(embed=embed)
+        
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
        
     # Bored
     @commands.slash_command(name='bored',
@@ -71,8 +75,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 response = json.loads(response)
                 whattodo = response['activity']
                 embed=discord.Embed(title=f"{whattodo}", colour=discord.Colour.random())
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
 
     # Excuses
@@ -85,8 +92,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
             response = json.loads(response)
             excuse = response[0]['excuse']
             embed=discord.Embed(title=f"{excuse}", colour=discord.Colour.random())
-            print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
             await ctx.respond(embed=embed)
+            
+            message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+            logging.info(message_str)
+            print(message_str)
 
     # Useless Facts
     @commands.slash_command(name='uselessfact', description="Random Useless Facts")
@@ -98,8 +108,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
             response = json.loads(response)
             data = response['text']
             embed=discord.Embed(title=f"{data}", colour=discord.Colour.random())
-            print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
             await ctx.respond(embed=embed)
+            
+            message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+            logging.info(message_str)
+            print(message_str)
 
     #
     #Jokes
@@ -119,9 +132,12 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 joke = response['joke']
                 category = response['category']
                 id = response['id']
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 embed=discord.Embed(title=f"{joke}", colour=discord.Colour.random())
                 await ctx.respond(embed=embed)
+                
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
     
 
     #
@@ -140,8 +156,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 response = json.loads(response)
                 fact = response['fact']
                 embed=discord.Embed(title=f"{fact}", colour=discord.Colour.random())
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
 
     # Dog Fact
@@ -159,8 +178,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 ranFact = random.randint(1,factCount)
                 fact = response[ranFact]['fact']
                 embed=discord.Embed(title=f"{fact}", colour=discord.Colour.random())
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
     # Cat Picture
     @commands.slash_command(name='cat',
@@ -175,8 +197,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 pic = response['file']
                 embed=discord.Embed(colour=discord.Colour.random())
                 embed.set_image(url=pic)
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
     # Dog Picture
     @commands.slash_command(name='dog',
@@ -191,8 +216,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 pic = response['url']
                 embed=discord.Embed(colour=discord.Colour.random())
                 embed.set_image(url=pic)
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
     # Fox Picture
     @commands.slash_command(name='fox',
@@ -207,8 +235,11 @@ class fun(commands.Cog, name="Random Fun Commands"):
                 pic = response['image']
                 embed=discord.Embed(colour=discord.Colour.random())
                 embed.set_image(url=pic)
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
 # When we load the cog, we use the name of the file.

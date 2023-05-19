@@ -4,6 +4,7 @@ import random
 import aiohttp
 import json
 import time
+import logging
 
 #
 # example Cog 
@@ -27,8 +28,10 @@ class tools(commands.Cog, name="Random Tools Commands"):
         """List Server Bot is in."""
         servers = list(self.bot.guilds)
         newLine = '\n'
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
         await ctx.respond(f"**Connected on {str(len(servers))} servers:**{newLine}{newLine.join(server.name for server in servers)}")
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
 
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.

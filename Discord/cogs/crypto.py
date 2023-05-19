@@ -4,7 +4,7 @@ import random
 import aiohttp
 import json
 import time
-
+import logging
 #
 # Crypto Cog
 #
@@ -35,8 +35,10 @@ class crypto(commands.Cog, name="Crypto Commands"):
                 embed.add_field(name="Daily High", value=f"${high}", inline=True)
                 embed.add_field(name="Daily Low", value=f"${low}", inline=True)
                 embed.set_footer(text="prices from Kraken")
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
     # Nano
     @commands.slash_command(name='nano',
@@ -60,10 +62,12 @@ class crypto(commands.Cog, name="Crypto Commands"):
                 embed.add_field(name="Daily High", value=f"${high}", inline=True)
                 embed.add_field(name="Daily Low", value=f"${low}", inline=True)
                 embed.set_footer(text="prices from Kraken")
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
-    
+
     # Ethereum
     @commands.slash_command(name='eth',
                     description="ETH Price",
@@ -86,8 +90,10 @@ class crypto(commands.Cog, name="Crypto Commands"):
                 embed.add_field(name="Daily High", value=f"${high}", inline=True)
                 embed.add_field(name="Daily Low", value=f"${low}", inline=True)
                 embed.set_footer(text="prices from Kraken")
-                print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
                 await ctx.respond(embed=embed)
+                message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+                logging.info(message_str)
+                print(message_str)
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
 # When we load the cog, we use the name of the file.

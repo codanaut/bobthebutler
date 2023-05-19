@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import random
 import time
+import logging
+
 #
 # Toke Time Cog
 #
@@ -37,9 +39,11 @@ class TokeTime(commands.Cog, name="Toke Time Commands"):
                 ]
         ranSaying = random.choice(qList)
         msg = ranSaying.format(user.mention,icon)
-
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
         await ctx.respond(msg)
+        # Log
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
     
 
     # Random Gif
@@ -60,8 +64,12 @@ class TokeTime(commands.Cog, name="Toke Time Commands"):
             'https://media.giphy.com/media/RSEuJxiw2H24U/giphy.gif',
             'https://media.giphy.com/media/xT9DPn3MABvIwlubgk/giphy.gif'
         ]
-        print(f"{time.strftime('%m/%d/%y %I:%M%p')} - /{ctx.command} - Server:{ctx.guild} - User:{ctx.author}")
         await ctx.respond(random.choice(possible_responses))
+
+        # Log
+        message_str = f"{time.strftime('%m/%d/%y %I:%M%p')} - User:{ctx.author} - Server:{ctx.guild} - Command: /{ctx.command} "
+        logging.info(message_str)
+        print(message_str)
 
 
 # The setup fucntion below is neccesarry. Remember we give bot.add_cog() the name of the class in this case SimpleCog.
