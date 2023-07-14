@@ -3,7 +3,7 @@ import inspect
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 import logging
-
+import re
 
 # Import Cogs
 from cogs.crypto import *
@@ -18,14 +18,18 @@ from cogs.news import *
 secret_file = open('token.secret','r')
 token = secret_file.readline().rstrip()
 
+
+
 # Enable Logging
 logging.basicConfig(
     level=logging.INFO,
+    #format='%(levelname)s %(message)s',
     format='%(levelname)s %(message)s',
-    filename='bot.log',
+    filename='/logs/bot.log',
     filemode='a'
 )
-
+# Disable httpx logging in never versions of telegram (it clutters the logs)
+logging.getLogger('httpx').setLevel(logging.WARNING)
 
 # Start Command
 async def start(update, context):
