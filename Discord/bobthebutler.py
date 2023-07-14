@@ -13,7 +13,7 @@ client_token = secret_file.readline().rstrip()
 logging.basicConfig(
     level=logging.INFO,
     format='%(levelname)s %(message)s',
-    filename='/logs/bobthebutler/discord/bot.log',
+    filename='/logs/bot.log',
     filemode='a'
 )
 
