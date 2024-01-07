@@ -13,7 +13,7 @@ client_token = secret_file.readline().rstrip()
 logging.basicConfig(
     level=logging.INFO,
     format='%(levelname)s %(message)s',
-    filename='/logs/bot.log',
+    filename='bot.log',
     filemode='a'
 )
 
@@ -43,7 +43,7 @@ initial_extensions = ['cogs.crypto',
                       'cogs.tokeTime',
                       'cogs.tools',
                       'cogs.xkcd',
-                      'cogs.chatgpt']
+                      'cogs.gemini']
 
 bot = commands.Bot(command_prefix=get_prefix, description='Cheat Codes: Use at your own risk, there is no quick save irl.', intents=intents)
 
