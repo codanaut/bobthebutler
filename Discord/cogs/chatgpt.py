@@ -1,15 +1,14 @@
 import discord
 from discord.ext import commands
 import time
-import openai
+from openai import OpenAI
 import logging
 #
 # Config OpenAI with API Key
 # 
 secret_file = open('openAI.secret','r')
 client_token = secret_file.readline().rstrip()
-openai.api_key = client_token
-
+client = OpenAI(api_key=client_token)
 #
 # ChatGPT Cog 
 #
@@ -72,7 +71,7 @@ class chatgpt(commands.Cog):
     # catches and hides errors or prints for testing
     @commands.Cog.listener()
     async def on_command_error(ctx,message,error):
-        #print(f"Error: {error}")
+        print(f"Error: {error}")
         pass
             
 
@@ -102,15 +101,13 @@ def chatgpts(question, systemPromt=None):
         systemPromt = "You are Bob the butler, a helpful discord bot trained on ChatGPT. Answer as concisely as possible."
 
     # Create ChatCompletion with user input
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        max_tokens=1000,
-        stop=None,
-        messages=[
-            {"role": "system", "content": systemPromt},
-            {"role": "user", "content": user_input}
-        ]
-    )
+    completion = client.chat.completions.create(model="gpt-3.5-turbo",
+    max_tokens=1000,
+    stop=None,
+    messages=[
+        {"role": "system", "content": systemPromt},
+        {"role": "user", "content": user_input}
+    ])
 
     # Print Response
     print("--")
