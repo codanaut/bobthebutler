@@ -12,7 +12,7 @@ client_token = os.getenv('token')
 if not client_token:
     # Environment variable not set, attempt to read from file as a fallback
     try:
-        with open('testing.secret', 'r') as secret_file:
+        with open('token.secret', 'r') as secret_file:
             client_token = secret_file.readline().rstrip()
             if not client_token:
                 # File is empty
@@ -64,7 +64,9 @@ initial_extensions = ['cogs.crypto',
                       'cogs.tokeTime',
                       'cogs.tools',
                       'cogs.xkcd',
-                      'cogs.gemini']
+                      'cogs.gemini',
+                      'cogs.help'
+                      ]
 
 bot = commands.Bot(command_prefix=get_prefix, description='Cheat Codes: Use at your own risk, there is no quick save irl.', intents=intents)
 
