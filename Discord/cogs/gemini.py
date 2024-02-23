@@ -118,12 +118,13 @@ class chatgpt(commands.Cog):
         pass
             
     # Slash Chat Command Command
-    @commands.slash_command(name="bard",description="Google's Bard AI, Powered via Gemini Pro")
+    @commands.slash_command(name="gemini",description="Google's Gemini Pro AI")
     async def chat(self, ctx, question: discord.Option(str)):
         await ctx.trigger_typing()
+        await ctx.defer()
         
         # Get or initialize the conversation history
-        history_key = question.author.id  # Use author ID as the history key
+        history_key = ctx.author.id  # Use author ID as the history key
         history = self.conversation_history.get(history_key, [])
 
                 # Generate reply and update history
