@@ -3,11 +3,35 @@ from discord.ext import commands
 import time
 import google.generativeai as genai
 import logging
+import os
+
 #
 # Config geminiAI.secret with API Key - https://makersuite.google.com/app/apikey
 # 
-secret_file = open('geminiAI.secret','r')
-client_token = secret_file.readline().rstrip()
+
+# Set Token
+# Attempt to get the environment variable 'CLIENT_TOKEN'
+client_token = os.getenv('gemini')
+
+if not client_token:
+    # Environment variable not set, attempt to read from file as a fallback
+    try:
+        with open('geminiAI.secret', 'r') as secret_file:
+            client_token = secret_file.readline().rstrip()
+            if not client_token:
+                # File is empty
+                print("Gemini: No token configured")
+                exit()
+            else:
+                print("Gemini: Token Set from file!")
+    except FileNotFoundError:
+        # File does not exist
+        print("Gemini: No token configured and secret file not found")
+        exit()
+else:
+    # Environment variable is set, proceed with using the client_token
+    print("Gemini: Token Set from environment variable!")
+
 client = genai.configure(api_key=client_token)
 
 #
@@ -151,19 +175,19 @@ def aiChat(question, history):
     safety_settings = [
     {
         "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_ONLY_HIGH"
+        "threshold": "BLOCK_NONE"
     },
     {
         "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_ONLY_HIGH"
+        "threshold": "BLOCK_NONE"
     },
     {
         "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_ONLY_HIGH"
+        "threshold": "BLOCK_NONE"
     },
     {
         "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_ONLY_HIGH"
+        "threshold": "BLOCK_NONE"
     },
     ]
 

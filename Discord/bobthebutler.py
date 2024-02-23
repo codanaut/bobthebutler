@@ -3,10 +3,31 @@ from discord.ext import commands
 import sys, traceback
 import asyncio
 import logging
+import os
 
 # set token
-secret_file = open('token.secret','r')
-client_token = secret_file.readline().rstrip()
+# Attempt to get the environment variable 'CLIENT_TOKEN'
+client_token = os.getenv('token')
+
+if not client_token:
+    # Environment variable not set, attempt to read from file as a fallback
+    try:
+        with open('testing.secret', 'r') as secret_file:
+            client_token = secret_file.readline().rstrip()
+            if not client_token:
+                # File is empty
+                print("Discord: No token configured")
+                exit()
+            else:
+                print("Discord: Token Set from file!")
+    except FileNotFoundError:
+        # File does not exist
+        print("Discord: No token configured and secret file not found")
+        exit()
+else:
+    # Environment variable is set, proceed with using the client_token
+    print("Discord: Token Set from environment variable!")
+
 
 
 # Enable Logging
