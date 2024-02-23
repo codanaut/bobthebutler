@@ -1,19 +1,15 @@
 # Bob The Butler
 A general purpose / fun bot for Discord &amp; Telegram.
 
-All features are kept the same between both the discord and the telegram version. The only big difference being telegram does not have a radio module. 
+Most features are kept the same between both the discord and the telegram version. The only big difference being telegram does not have a radio module. 
 
----
-
-# Discord
+## Discord
 
 The discord version of Bob The Butler. Works in servers and dm's. You will need to generate a bot token from the Discord Developer Portal to run your own version. 
 
-## Self Host
+If you'd like to use the AI portion to be able to chat with Bob you need to get a token for Gemini (free) or openAI (subscription)
 
-Once cloned you will need to create a token file called `token.secret` inside the discord folder and place your bots token in that file.
-
-You also need to create `geminiAI.secret` for the geminiAI to work. Same with `openAI.secret` if you want to use chatgpt instead. 
+The Gemini module is `enabled` by default and will need a key. 
 
 ### Docker
 
@@ -25,9 +21,18 @@ This is the easiest and suggested method for hosting.
 
 **Run**
 
-     sudo docker run -d --name bob_discord -it bob_discord:latest
+     docker run -d -e token=your-discord-token -e gemini=your-gemini-token --name bob_discord -it bob_discord:latest
+
 
 ---
+## Token File Alternative
+If you don't pass your tokens via the environmental variables you will need to create a token file called `token.secret` inside the discord folder and place your bots token in that file.
+
+You also need to create `geminiAI.secret` for the geminiAI to work.  Same with `openAI.secret` if you want to use chatgpt instead. Only one module should be used at a time right now!
+
+This way can be ran like so without the tokens passed in the command line:
+
+     docker run -d --name bob_discord -it bob_discord:latest
 
 ### Manual Install:
 
@@ -39,7 +44,7 @@ We are now using [PyCord](https://github.com/Pycord-Development/pycord) instead 
 
     python3 -m pip install -U "py-cord[voice]"
 
-(Also requires `FFMPEG` for the radio module if you want to use it. The radio module is not being kept up right now! Check out my project `RadioCord` instead!)
+(Also requires `FFMPEG` for the radio module if you want to use it. The radio module is not being kept up right now and may be removed in the future! Check out my project [RadioCord](https://github.com/codanaut/radiocord) for a better music bot!
 
 **Install the rest of the Requirements**
 
@@ -58,7 +63,7 @@ Make sure you've added the `token.secret` file and then run the program.
 
 ---
 
-# Telegram
+## Telegram
 
 The telegram version of Bob The Butler. 
 
